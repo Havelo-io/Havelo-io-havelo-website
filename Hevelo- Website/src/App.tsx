@@ -4,6 +4,7 @@ import IntroSplash from './components/IntroSplash'
 import PageTransition from './components/PageTransition'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -65,6 +66,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   )
 }

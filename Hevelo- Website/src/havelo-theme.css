@@ -144,3 +144,35 @@
   .hv .reveal { opacity: 1; transform: none; transition: none; }
   .hv-btn, .ft-social a, .ft-btn { transition: none; }
 }
+
+/* Contact shortcut on every public page. */
+.whatsapp-float {
+  position: fixed;
+  z-index: 120;
+  right: calc(24px + env(safe-area-inset-right, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, .9);
+  border-radius: 50%;
+  color: #fff;
+  background: #25d366;
+  box-shadow: 0 10px 30px rgba(4, 28, 20, .32);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.whatsapp-float svg { width: 31px; height: 31px; stroke-width: 2; }
+.whatsapp-float:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(4, 28, 20, .42); }
+.whatsapp-float:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
+@media (max-width: 760px) {
+  .whatsapp-float {
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 56px;
+    height: 56px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float { transition: none; }
+}
