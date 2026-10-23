@@ -7,6 +7,7 @@ import './havelo-about.css'
 import './havelo-services.css'
 import './havelo-theme.css'
 import './havelo-pages.css'
+import './havelo-home.css'
 
 document.documentElement.dataset.theme = 'dark'
 

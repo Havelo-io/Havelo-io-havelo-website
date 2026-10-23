@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowIcon } from '../components/Icons'
-import ProcessStack from '../components/ProcessStack'
+import ProcessGrid from '../components/ProcessGrid'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
 import ServicesMonitorShowcase from '../components/ServicesMonitorShowcase'
-import VisionReveal from '../components/VisionReveal'
+import HomeVision from '../components/HomeVision'
+import TechnologiesShowcase from '../components/TechnologiesShowcase'
 
 const marqueeServices = [
   'Web Development',
@@ -214,13 +215,15 @@ export default function Home() {
         </div>
       </div>
 
-      <ProcessStack />
+      <ProcessGrid />
 
-      <VisionReveal />
+      <HomeVision />
 
       <ServicesMonitorShowcase />
 
-      <section className="section">
+      <TechnologiesShowcase />
+
+      <section className="section home-final-cta">
         <div className="container">
           <Reveal>
             <div className="cta-panel">

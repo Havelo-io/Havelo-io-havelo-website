@@ -7,6 +7,10 @@ export default function Reveal({ children, className = '', delay = 0 }: { childr
   useEffect(() => {
     const element = ref.current
     if (!element) return
+    if (typeof IntersectionObserver === 'undefined') {
+      queueMicrotask(() => setVisible(true))
+      return
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setVisible(true)

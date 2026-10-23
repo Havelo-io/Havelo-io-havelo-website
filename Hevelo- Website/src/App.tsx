@@ -45,8 +45,9 @@ function ScrollManager() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
   return (
-    <div className="site-shell">
+    <div className={`site-shell${pathname === '/' ? ' site-shell--home' : ''}`}>
       <IntroSplash />
       <PageTransition />
       <a className="skip-link" href="#main-content">Skip to content</a>
