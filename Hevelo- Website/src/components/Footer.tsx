@@ -1,78 +1,67 @@
 import { Link } from 'react-router-dom'
-import { BulbIcon, FacebookIcon, HandshakeIcon, InstagramIcon, MailIcon, RocketIcon, SettingsIcon, ShieldCheckIcon, TargetIcon, UsersIcon } from './Icons'
+import { FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon } from './Icons'
 
-// Social links. Update the Instagram href if HAVELO has its own Instagram profile link.
+// Social links. Replace these hrefs with the real Havelo profile links.
 const SOCIAL_LINKS = [
   { label: 'Facebook', href: 'https://www.facebook.com/share/1Ep56z7Mfr/?mibextid=wwXIfr', Icon: FacebookIcon },
   { label: 'Instagram', href: 'https://www.facebook.com/share/1Ep56z7Mfr/?mibextid=wwXIfr', Icon: InstagramIcon },
-]
-
-const HIGHLIGHTS = [
-  { Icon: RocketIcon, label: 'Innovative Solutions' },
-  { Icon: UsersIcon, label: 'Client Focused' },
-  { Icon: ShieldCheckIcon, label: 'Reliable Support' },
-]
-
-const REASONS = [
-  { Icon: BulbIcon, title: 'User-Focused Solutions', text: 'Clean, simple and effective digital experiences.' },
-  { Icon: SettingsIcon, title: 'Modern & Reliable Technology', text: 'Built with the latest tools and best practices.' },
-  { Icon: TargetIcon, title: 'Tailored to Your Goals', text: 'Solutions designed around your specific needs.' },
-  { Icon: HandshakeIcon, title: 'Ongoing Support', text: 'We’re with you beyond launch.' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/', Icon: LinkedInIcon },
 ]
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <Link to="/" className="brand" aria-label="HAVELO home">
+    <footer className="ft">
+      <div className="ft-wrap ft-grid">
+        <div className="ft-brand">
+          <Link to="/" className="brand" aria-label="Havelo home">
             <span className="brand-mark"><img src="/assets/havelo-mark.png" alt="" width="256" height="256" /></span>
             <span className="brand-name">HAVELO</span>
           </Link>
-          <p className="footer-tagline">Where Ideas Are Brought To Life</p>
-          <p className="footer-about">We build modern digital solutions that help individuals, startups, and businesses turn their ideas into real, impactful products.</p>
-          <ul className="footer-highlights">
-            {HIGHLIGHTS.map(({ Icon, label }) => (
-              <li key={label}><span className="icon-box"><Icon /></span><span>{label}</span></li>
+          <p className="ft-tagline">Where ideas are brought to life.</p>
+          <p className="ft-about">Websites, mobile apps and custom software, built by the people you talk to.</p>
+          <div className="ft-social" role="group" aria-label="Social media">
+            {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Havelo on ${label}`} title={label}><Icon /></a>
             ))}
-          </ul>
+          </div>
         </div>
-        <div>
-          <h2>Why choose HAVELO?</h2>
-          <ul className="footer-reasons">
-            {REASONS.map(({ Icon, title, text }) => (
-              <li key={title}>
-                <span className="icon-box"><Icon /></span>
-                <span><strong>{title}</strong><small>{text}</small></span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
+        <nav aria-label="Quick links">
           <h2>Quick links</h2>
-          <div className="footer-links">
-            <Link to="/about">About Us</Link>
+          <div className="ft-links">
+            <Link to="/">Home</Link>
+            <Link to="/about">About us</Link>
             <Link to="/services">Services</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>
           </div>
-        </div>
+        </nav>
+        <nav aria-label="Services">
+          <h2>Services</h2>
+          <div className="ft-links">
+            <Link to="/services#svc-1">Website Development</Link>
+            <Link to="/services#svc-2">Mobile Apps</Link>
+            <Link to="/services#svc-3">UI/UX Design</Link>
+            <Link to="/services#svc-4">Custom Software</Link>
+            <Link to="/services#svc-5">Maintenance</Link>
+          </div>
+        </nav>
         <div>
           <h2>Contact</h2>
-          <div className="footer-links">
+          <div className="ft-links">
             <a href="mailto:havelo.lk@gmail.com"><MailIcon />havelo.lk@gmail.com</a>
+            <span>Colombo, Sri Lanka</span>
+            <span>Monday to Friday, 9.00 to 18.00</span>
           </div>
-          <h2 className="footer-follow">Follow us</h2>
-          <div className="footer-social" role="group" aria-label="Social media">
-            {SOCIAL_LINKS.map(({ label, href, Icon }) => (
-              <a key={label} className="icon-box social-link" href={href} target="_blank" rel="noopener noreferrer" aria-label={`HAVELO on ${label}`} title={label}><Icon /></a>
-            ))}
-          </div>
+          <Link className="ft-btn" to="/start-project">Start a project</Link>
         </div>
       </div>
-      <div className="container footer-bottom">
-        <p>© 2026 HAVELO. All Rights Reserved.</p>
-        <p>Websites · Mobile Apps · Custom Software</p>
+      <div className="ft-wrap ft-bottom">
+        <p>© 2026 Havelo. All rights reserved.</p>
+        <ul>
+          <li>Websites</li>
+          <li>Mobile Apps</li>
+          <li>Custom Software</li>
+        </ul>
       </div>
     </footer>
   )

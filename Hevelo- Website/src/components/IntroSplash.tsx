@@ -22,6 +22,7 @@ export const INTRO_CONFIG = {
 
 const STORAGE_KEY = 'havelo-intro-seen'
 const LETTERS = 'HAVELO'.split('')
+const INTRO_COMPLETE_EVENT = 'havelo:intro-complete'
 
 function shouldPlay() {
   if (!INTRO_CONFIG.playOncePerSession) return true
@@ -36,11 +37,18 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
+function markIntroComplete() {
+  const root = document.documentElement
+  if (root.hasAttribute('data-intro-complete')) return
+  root.setAttribute('data-intro-complete', '')
+  window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT))
+}
+
 export default function IntroSplash() {
   const [visible, setVisible] = useState(shouldPlay)
   const [leaving, setLeaving] = useState(false)
   const [reduced] = useState(prefersReducedMotion)
-  const playing = useRef(visible).current
+  const [playing] = useState(visible)
   const pctRef = useRef<HTMLDivElement>(null)
   const timers = useRef<number[]>([])
   const frame = useRef(0)
@@ -60,6 +68,7 @@ export default function IntroSplash() {
       /* storage unavailable */
     }
     unlock()
+    markIntroComplete()
     setVisible(false)
   }
 
@@ -95,7 +104,11 @@ export default function IntroSplash() {
   }, [playing, reduced])
 
   useEffect(() => {
-    if (!playing) return
+    if (!playing) {
+      markIntroComplete()
+      return
+    }
+
     const c = INTRO_CONFIG
     const overlayMs = reduced ? c.reducedMotionMs : (c.liftAt + c.liftDur) * 1000 + 100
     const homeMs = (c.homeDelay + c.homeDur) * 1000 + 300

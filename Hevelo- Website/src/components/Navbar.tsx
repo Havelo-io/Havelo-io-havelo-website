@@ -48,7 +48,7 @@ export default function Navbar() {
       <nav className="navbar container" aria-label="Main navigation">
         <Link to="/" className="brand" aria-label="HAVELO home">
           <span className="brand-mark"><img src="/assets/havelo-mark.png" alt="" width="256" height="256" /></span>
-          <span className="brand-name">HAVELO<small>Ideas brought to life</small></span>
+          <span className="brand-name">HAVELO<small>Where ideas brought to life</small></span>
         </Link>
         <div id="mobile-navigation" className={`nav-links ${open ? 'is-open' : ''}`}>
           {links.map(([label, path]) => <NavLink key={path} to={path} onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'active' : ''}>{label}</NavLink>)}

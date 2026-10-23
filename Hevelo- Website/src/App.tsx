@@ -12,11 +12,19 @@ import Contact from './pages/Contact'
 import StartProject from './pages/StartProject'
 
 function ScrollManager() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
+  // Scroll to the #anchor when the link has one (for example /services#svc-3), otherwise to the top.
   useEffect(() => {
+    if (hash) {
+      const target = document.getElementById(hash.slice(1))
+      if (target) {
+        window.setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80)
+        return
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
+  }, [pathname, hash])
 
   return null
 }
