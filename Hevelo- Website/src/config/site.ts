@@ -11,8 +11,8 @@ export const SITE = {
   // Primary number, used for single call and WhatsApp buttons.
   phone: phones[0].label,
   phoneHref: phones[0].href,
-  whatsapp: 'https://wa.me/94764409226',
-  whatsappLabel: '+94 764409226',
+  whatsapp: phones[0].whatsapp,
+  whatsappLabel: phones[0].label,
   hours: 'Mon–Fri, 9:00–18:00 (GMT+5:30)',
   location: 'Colombo, Sri Lanka',
 } as const

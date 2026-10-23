@@ -1,12 +1,11 @@
 import { WhatsAppIcon } from './Icons'
-
-const WHATSAPP_URL = 'https://wa.me/94705766539'
+import { SITE } from '../config/site'
 
 export default function FloatingWhatsApp() {
   return (
     <a
       className="whatsapp-float"
-      href={WHATSAPP_URL}
+      href={SITE.whatsapp}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with HAVELO on WhatsApp"
