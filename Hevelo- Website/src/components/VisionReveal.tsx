@@ -41,7 +41,7 @@ function RocketVisual() {
             </radialGradient>
           </defs>
 
-          <g className="vision-rocket__craft" transform="translate(-112 75) rotate(34 268 254)">
+          <g className="vision-rocket__craft" transform="rotate(34 268 254)">
             <g className="vision-rocket__body">
               <path d="M218 148c-8 59 3 132 40 202l2 4 2-4c37-70 48-143 40-202-25-16-59-16-84 0Z" fill="url(#rocket-body-premium)" stroke="#bafff8" strokeOpacity=".58" strokeWidth="2" />
               <path d="M260 143c23 0 34 3 42 6 8 59-3 132-40 201l-2 4Z" fill="url(#rocket-shadow-premium)" opacity=".42" />
@@ -95,13 +95,13 @@ export default function VisionReveal() {
       frame = 0
       const rect = section.getBoundingClientRect()
       const viewport = window.innerHeight
-      const travel = Math.max(Math.min(rect.height, viewport) * .62, 1)
-      const progress = Math.max(0, Math.min(1, (viewport * .92 - rect.top) / travel))
+      const travel = Math.max(rect.height + viewport * .4, 1)
+      const progress = Math.max(0, Math.min(1, (viewport * .9 - rect.top) / travel))
       section.style.setProperty('--vision-progress', (reducedMotion.matches ? 1 : progress).toFixed(4))
       wordRefs.current.forEach((word, index) => {
         if (!word) return
-        const start = (index / WORDS.length) * .42
-        const reveal = reducedMotion.matches ? 1 : Math.max(0, Math.min(1, (progress - start) / .12))
+        const start = (index / WORDS.length) * .74
+        const reveal = reducedMotion.matches ? 1 : Math.max(0, Math.min(1, (progress - start) / .18))
         word.style.setProperty('--word-reveal', reveal.toFixed(3))
       })
     }
@@ -141,9 +141,10 @@ export default function VisionReveal() {
       <div className="container vision-reveal__story">
         <div className="vision-reveal__copy">
           <h2 id="vision-reveal-title">Where bold ideas become <em>digital reality.</em></h2>
-          <p className="vision-reveal__manifesto" aria-label={VISION}>
+          <p className="vision-reveal__accessible">{VISION}</p>
+          <p className="vision-reveal__manifesto" aria-hidden="true">
             {WORDS.map((word, index) => (
-              <span aria-hidden="true" className={word.startsWith('HAVELO') ? 'vision-reveal__brand' : undefined} key={`${word}-${index}`} ref={element => { wordRefs.current[index] = element }}>{word}{index < WORDS.length - 1 ? ' ' : ''}</span>
+              <span className={word.startsWith('HAVELO') ? 'vision-reveal__brand' : undefined} key={`${word}-${index}`} ref={element => { wordRefs.current[index] = element }}>{word}{index < WORDS.length - 1 ? ' ' : ''}</span>
             ))}
           </p>
         </div>

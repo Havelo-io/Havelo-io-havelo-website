@@ -3,6 +3,7 @@ import { ArrowIcon, CapIcon, CheckIcon, CodeIcon, PenIcon, PhoneIcon, SettingsIc
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
 import ServicesPhone from '../components/ServicesPhone'
+import { SITE } from '../config/site'
 
 const services = [
   { icon: <CodeIcon />, number: '01', title: 'Website Development', text: 'Fast, accessible websites designed to convert and scale.', items: ['Business websites', 'Portfolio websites', 'Corporate websites', 'E-commerce websites'], service: 'website', cta: 'Discuss Your Website Project' },
@@ -15,18 +16,15 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="sv">
+    <div className="hv sv">
       <SEO title="Services, Havelo. Web, mobile, UI/UX and custom software" description="Website development, mobile apps, UI/UX design, custom software, support and academic projects from Havelo, a software studio in Colombo." path="/services" />
 
       {/* 2 and 3. Hero with the phone mock */}
       <section className="sv-hero">
-        <div className="sv-hero__glow" aria-hidden="true" />
-        <div className="sv-hero__grid" aria-hidden="true" />
-        <div className="sv-hero__rings" aria-hidden="true"><i /><i /><i /></div>
-        <div className="sv-wrap sv-hero__cols">
+        <div className="hv-wrap sv-hero__cols">
           <Reveal>
-            <span className="sv-eyebrow">Our services</span>
-            <h1>Digital solutions<br />designed to move<br /><span className="sv-grad">business forward.</span></h1>
+            <span className="hv-eyebrow">Our services</span>
+            <h1>Digital solutions<br />designed to move<br /><span className="hv-grad">business forward.</span></h1>
             <p className="sv-lead">From customer facing experiences to internal platforms, we design and build technology that solves real problems.</p>
           </Reveal>
           <Reveal delay={120}><ServicesPhone /></Reveal>
@@ -35,7 +33,7 @@ export default function Services() {
 
       {/* 4. Services grid */}
       <section className="sv-grid-section">
-        <div className="sv-wrap sv-grid">
+        <div className="hv-wrap sv-grid">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={(index % 2) * 90}>
               <article className="sv-card" id={`svc-${index + 1}`}>
@@ -52,16 +50,16 @@ export default function Services() {
 
       {/* 5. Built for you */}
       <section className="sv-band-section" id="contact">
-        <div className="sv-wrap">
+        <div className="hv-wrap">
           <Reveal>
             <div className="sv-band">
               <span className="sv-band__ring sv-band__ring--a" aria-hidden="true" /><span className="sv-band__ring sv-band__ring--b" aria-hidden="true" />
               <div>
-                <span className="sv-eyebrow">Built for you</span>
-                <h2>Have something different in mind?</h2>
+                <span className="hv-eyebrow">Built for you</span>
+                <h2>Have something different in <span className="hv-grad">mind?</span></h2>
                 <p>Tell us what you want to create. We will help shape the right approach.</p>
               </div>
-              <a className="sv-band__btn" href="mailto:havelo.lk@gmail.com">Discuss your idea<ArrowIcon /></a>
+              <a className="hv-btn hv-btn--primary" href={`mailto:${SITE.email}`}>Discuss your idea<ArrowIcon /></a>
             </div>
           </Reveal>
         </div>

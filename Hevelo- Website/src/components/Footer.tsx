@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import { FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon } from './Icons'
+import { CallIcon, FacebookIcon, InstagramIcon, MailIcon } from './Icons'
+import { SITE, callLabel } from '../config/site'
 
 // Social links. Replace these hrefs with the real Havelo profile links.
 const SOCIAL_LINKS = [
   { label: 'Facebook', href: 'https://www.facebook.com/share/1Ep56z7Mfr/?mibextid=wwXIfr', Icon: FacebookIcon },
   { label: 'Instagram', href: 'https://www.facebook.com/share/1Ep56z7Mfr/?mibextid=wwXIfr', Icon: InstagramIcon },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/', Icon: LinkedInIcon },
 ]
 
 export default function Footer() {
@@ -31,7 +31,7 @@ export default function Footer() {
             <Link to="/">Home</Link>
             <Link to="/about">About us</Link>
             <Link to="/services">Services</Link>
-            <Link to="/pricing">Pricing</Link>
+            <Link to="/projects">Our Work</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </nav>
@@ -48,11 +48,11 @@ export default function Footer() {
         <div>
           <h2>Contact</h2>
           <div className="ft-links">
-            <a href="mailto:havelo.lk@gmail.com"><MailIcon />havelo.lk@gmail.com</a>
-            <span>Colombo, Sri Lanka</span>
-            <span>Monday to Friday, 9.00 to 18.00</span>
+            {SITE.phones.map(phone => <a key={phone.label} href={phone.href} aria-label={callLabel(phone.label)}><CallIcon />{phone.label}</a>)}
+            <a href={`mailto:${SITE.email}`}><MailIcon />{SITE.email}</a>
+            <span>{SITE.location}</span>
+            <span>{SITE.hours}</span>
           </div>
-          <Link className="ft-btn" to="/start-project">Start a project</Link>
         </div>
       </div>
       <div className="ft-wrap ft-bottom">

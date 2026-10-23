@@ -5,6 +5,10 @@ import App from './App'
 import './styles.css'
 import './havelo-about.css'
 import './havelo-services.css'
+import './havelo-theme.css'
+import './havelo-pages.css'
+
+document.documentElement.dataset.theme = 'dark'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

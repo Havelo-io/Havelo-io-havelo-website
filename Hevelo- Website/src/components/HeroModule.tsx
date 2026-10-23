@@ -44,13 +44,12 @@ export default function HeroModule() {
             <svg viewBox="0 0 420 150" role="img" aria-label="Chart of steady progress rising over time">
               <defs>
                 <linearGradient id="ab-stroke" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stopColor="#2E7BA8" />
-                  <stop offset=".55" stopColor="#10B4E8" />
-                  <stop offset="1" stopColor="#59F4EE" />
+                  <stop offset="0" stopColor="#1EC0DC" />
+                  <stop offset="1" stopColor="#7DF3FF" />
                 </linearGradient>
                 <linearGradient id="ab-area" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#59F4EE" stopOpacity=".26" />
-                  <stop offset="1" stopColor="#59F4EE" stopOpacity="0" />
+                  <stop offset="0" stopColor="#3FE3F5" stopOpacity=".26" />
+                  <stop offset="1" stopColor="#3FE3F5" stopOpacity="0" />
                 </linearGradient>
               </defs>
               <g stroke="rgba(255,255,255,.05)" strokeWidth="1">
@@ -59,14 +58,14 @@ export default function HeroModule() {
               <path d={`${LINE} L410 150 L10 150 Z`} fill="url(#ab-area)" />
               <path id="ab-line" d={LINE} fill="none" stroke="url(#ab-stroke)" strokeWidth="2.4" strokeLinecap="round" />
               {reduced ? (
-                <circle cx="410" cy="18" r="3.8" fill="#59F4EE" />
+                <circle cx="410" cy="18" r="3.8" fill="#3FE3F5" />
               ) : (
                 <>
-                  <circle cx="410" cy="18" r="2.6" fill="#59F4EE" opacity=".55" />
-                  <circle r="9" fill="#59F4EE" opacity=".16">
+                  <circle cx="410" cy="18" r="2.6" fill="#3FE3F5" opacity=".55" />
+                  <circle r="9" fill="#3FE3F5" opacity=".16">
                     <animateMotion dur="6.5s" repeatCount="indefinite"><mpath href="#ab-line" /></animateMotion>
                   </circle>
-                  <circle r="3.8" fill="#59F4EE" style={{ filter: 'drop-shadow(0 0 5px #59F4EE)' }}>
+                  <circle r="3.8" fill="#3FE3F5" style={{ filter: 'drop-shadow(0 0 5px #3FE3F5)' }}>
                     <animateMotion dur="6.5s" repeatCount="indefinite"><mpath href="#ab-line" /></animateMotion>
                   </circle>
                 </>

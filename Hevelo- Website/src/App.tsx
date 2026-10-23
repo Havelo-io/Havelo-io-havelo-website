@@ -7,9 +7,23 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
-import Pricing from './pages/Pricing'
+import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import StartProject from './pages/StartProject'
+
+const GLOW_ROUTES = ['/about', '/services', '/projects', '/contact']
+
+function GlowBackground() {
+  const { pathname } = useLocation()
+  if (!GLOW_ROUTES.includes(pathname)) return null
+  return (
+    <div className="bg-canvas" aria-hidden="true">
+      <span className="bg-blob a" /><span className="bg-blob b" /><span className="bg-blob c" />
+      <span className="bg-ring r1" /><span className="bg-ring r2" />
+      <span className="bg-dots d1" /><span className="bg-dots d2" />
+    </div>
+  )
+}
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -36,13 +50,15 @@ export default function App() {
       <PageTransition />
       <a className="skip-link" href="#main-content">Skip to content</a>
       <ScrollManager />
+      <GlowBackground />
       <Navbar />
       <main id="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/pricing" element={<Navigate to="/services" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/start-project" element={<StartProject />} />
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -11,7 +11,7 @@ const posts = [
 
 const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-const Verified = () => <svg className="sv-verified" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2 1 2.8 2.5 1.7-.9 2.9.9 2.9-2.5 1.7-1 2.8-3-.2L12 22l-2.4-1.8-3 .2-1-2.8-2.5-1.7.9-2.9-.9-2.9 2.5-1.7 1-2.8 3 .2L12 2z" fill="#59F4EE" /><path d="m8.4 12.2 2.4 2.4 4.8-5" fill="none" stroke="#03181C" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+const Verified = () => <svg className="sv-verified" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 1.8 3-.2 1 2.8 2.5 1.7-.9 2.9.9 2.9-2.5 1.7-1 2.8-3-.2L12 22l-2.4-1.8-3 .2-1-2.8-2.5-1.7.9-2.9-.9-2.9 2.5-1.7 1-2.8 3 .2L12 2z" fill="#3FE3F5" /><path d="m8.4 12.2 2.4 2.4 4.8-5" fill="none" stroke="#04303A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
 
 const Avatar = () => <span className="sv-avatar"><img src="/assets/havelo-mark.png" alt="" width="64" height="64" /></span>
 

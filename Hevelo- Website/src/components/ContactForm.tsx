@@ -31,25 +31,26 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form glass-card" onSubmit={handleSubmit} noValidate>
-      <div className="form-row">
-        <label>Full Name<input name="name" type="text" autoComplete="name" minLength={2} maxLength={80} required placeholder="Your full name" /></label>
-        <label>Email Address<input name="email" type="email" autoComplete="email" maxLength={120} required placeholder="you@company.com" /></label>
+    <form className="ct-form hv-ink" onSubmit={handleSubmit} noValidate>
+      <h2>Start a project</h2>
+      <p className="ct-form__intro">Two sentences is enough. We will take it from there.</p>
+      <div className="ct-row">
+        <div className="ct-field"><label htmlFor="cf-name">Name</label><input id="cf-name" name="name" type="text" autoComplete="name" minLength={2} maxLength={80} required placeholder="Your name" /></div>
+        <div className="ct-field"><label htmlFor="cf-email">Email</label><input id="cf-email" name="email" type="email" autoComplete="email" maxLength={120} required placeholder="you@company.com" /></div>
       </div>
-      <div className="form-row">
-        <label>Phone Number<input name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="Your phone number" /></label>
-        <label>Subject<input name="subject" type="text" minLength={3} maxLength={120} required placeholder="How can we help?" /></label>
+      <div className="ct-row">
+        <div className="ct-field"><label htmlFor="cf-phone">Phone</label><input id="cf-phone" name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="Optional" /></div>
+        <div className="ct-field"><label htmlFor="cf-subject">Subject</label><input id="cf-subject" name="subject" type="text" minLength={3} maxLength={120} required placeholder="How can we help?" /></div>
       </div>
-      <label>Message<textarea name="message" minLength={20} maxLength={3000} required rows={6} placeholder="Tell us about your project, goals, and timeline." /></label>
-      <label className="honeypot" aria-hidden="true">Company website<input name="website" tabIndex={-1} autoComplete="off" /></label>
-      <div className="form-submit">
-        <button className="button" type="submit" disabled={status.type === 'loading'}>
-          {status.type === 'loading' ? 'Sending...' : 'Send inquiry'}{status.type !== 'loading' && <ArrowIcon />}
-        </button>
-        <p className={`form-status ${status.type}`} role="status" aria-live="polite">
-          {status.type === 'success' && <CheckIcon />}{status.message}
-        </p>
-      </div>
+      <div className="ct-field"><label htmlFor="cf-message">What do you need?</label><textarea id="cf-message" name="message" minLength={20} maxLength={3000} required rows={5} placeholder="Website, app, or something else. Tell us about your goals and timeline." /></div>
+      <div className="honeypot" aria-hidden="true"><label htmlFor="cf-website">Company website</label><input id="cf-website" name="website" tabIndex={-1} autoComplete="off" /></div>
+      <button className="hv-btn hv-btn--primary ct-submit" type="submit" disabled={status.type === 'loading'}>
+        {status.type === 'loading' ? 'Sending...' : 'Send enquiry'}{status.type !== 'loading' && <ArrowIcon />}
+      </button>
+      <p className={`ct-status ${status.type}`} role="status" aria-live="polite">
+        {status.type === 'success' && <CheckIcon />}{status.message}
+      </p>
+      <div className="ct-hours"><span>Reply within 1 working day</span><span>Mon–Fri</span></div>
     </form>
   )
 }

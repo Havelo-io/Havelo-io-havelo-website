@@ -152,11 +152,6 @@ export default function ProcessStack() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
     let inView = false
-    let cardTops: number[] = []
-
-    const measureCards = () => {
-      cardTops = cardRefs.current.map(card => card ? Number.parseFloat(window.getComputedStyle(card).top) : Number.NaN)
-    }
 
     const update = () => {
       frame = 0
@@ -166,16 +161,19 @@ export default function ProcessStack() {
 
       const rect = stage.getBoundingClientRect()
       const stickyTop = Math.min(132, window.innerHeight * .16)
-      const travel = Math.max(rect.height - window.innerHeight * .72, 1)
+      const travel = Math.max(rect.height - window.innerHeight * .7, 1)
       const progress = Math.max(0, Math.min(1, (stickyTop - rect.top) / travel))
       section.style.setProperty('--process-progress', progress.toFixed(4))
 
-      let nextActive = 0
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return
-        const cardTop = Number.isFinite(cardTops[index]) ? cardTops[index] : stickyTop
-        if (card.getBoundingClientRect().top <= cardTop + 24) nextActive = index
-      })
+      const rawActive = progress < .34 ? 0 : progress < .68 ? 1 : 2
+      let nextActive = rawActive
+      if (rawActive > activeRef.current) {
+        const forwardBoundary = rawActive === 1 ? .365 : .705
+        if (progress < forwardBoundary) nextActive = activeRef.current
+      } else if (rawActive < activeRef.current) {
+        const backwardBoundary = activeRef.current === 1 ? .315 : .655
+        if (progress > backwardBoundary) nextActive = activeRef.current
+      }
       if (nextActive !== activeRef.current) {
         activeRef.current = nextActive
         setActiveIndex(nextActive)
@@ -184,8 +182,7 @@ export default function ProcessStack() {
       if (!reducedMotion.matches) {
         cardRefs.current.forEach((card, index) => {
           if (!card) return
-          const cardTop = Number.isFinite(cardTops[index]) ? cardTops[index] : stickyTop
-          const local = Math.max(-1, Math.min(1, (cardTop - card.getBoundingClientRect().top) / Math.max(window.innerHeight * .45, 1)))
+          const local = Math.max(-1, Math.min(1, (progress - index * .34) * 2.2))
           card.style.setProperty('--art-shift', `${(local * 14).toFixed(2)}px`)
           card.style.setProperty('--glow-shift', `${(local * -9).toFixed(2)}px`)
         })
@@ -196,33 +193,27 @@ export default function ProcessStack() {
       if (inView && !frame) frame = window.requestAnimationFrame(update)
     }
 
-    const handleResize = () => {
-      measureCards()
-      requestUpdate()
-    }
-
     const observer = new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting
       if (inView) requestUpdate()
     }, { rootMargin: '20% 0px' })
 
-    measureCards()
     observer.observe(root)
     frame = window.requestAnimationFrame(update)
     window.addEventListener('scroll', requestUpdate, { passive: true })
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', requestUpdate)
     reducedMotion.addEventListener('change', requestUpdate)
     return () => {
       observer.disconnect()
       window.removeEventListener('scroll', requestUpdate)
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', requestUpdate)
       reducedMotion.removeEventListener('change', requestUpdate)
       window.cancelAnimationFrame(frame)
     }
   }, [])
 
   return (
-    <section className="process-stack" ref={sectionRef} aria-labelledby="process-stack-title">
+    <section className="process-stack" id="process" ref={sectionRef} aria-labelledby="process-stack-title">
       <div className="process-stack__atmosphere" aria-hidden="true" />
       <div className="container process-stack__inner">
         <header className="process-stack__heading">
