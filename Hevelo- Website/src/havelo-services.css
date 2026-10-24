@@ -2,6 +2,8 @@
    Havelo Services page (light glass theme). Scoped to .sv.
    Shared tokens and components (hv-*) live in havelo-theme.css.
    ========================================================================== */
+.sv-grid > .reveal { min-width: 0; height: 100%; }
+
 /* ---------- Hero ---------- */
 .sv-hero { position: relative; padding: 150px 0 72px; }
 .sv-hero__cols { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); align-items: center; gap: 56px; }
@@ -62,51 +64,27 @@
 .sv-postbtn { padding: 6px 16px; border-radius: 999px; color: #04303A; background: var(--cyan-400); font-size: 11px; font-weight: 700; animation: sv-pulse 3s ease-in-out infinite; }
 @keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(63, 227, 245, .45); } 70%, 100% { box-shadow: 0 0 0 6px rgba(63, 227, 245, 0); } }
 
-/* ---------- Services carousel ---------- */
-.sv-grid-section { overflow-x: clip; padding: 60px 0 116px; }
-.sv-carousel { position: relative; }
-.sv-carousel__anchors { position: absolute; top: 0; left: 0; }
-.sv-carousel__anchors span { display: block; height: 0; scroll-margin-top: 110px; }
-.sv-carousel__stage { position: relative; display: grid; min-height: 550px; place-items: center; perspective: 1200px; outline: none; touch-action: pan-y; }
-.sv-carousel__stage:focus-visible { outline: 2px solid var(--cyan-600); outline-offset: 5px; border-radius: 28px; }
-.sv-carousel__slot { position: absolute; top: 50%; left: 50%; width: min(400px, 100%); height: 520px; transform: translate(-50%, -50%); }
-.sv-carousel__slot--center { z-index: 3; }
-.sv-carousel__slot--previous, .sv-carousel__slot--next { z-index: 2; }
-.sv-carousel__slot--far-previous, .sv-carousel__slot--far-next, .sv-carousel__slot--hidden { z-index: 1; pointer-events: none; }
-.sv-carousel__item { width: 100%; height: 100%; opacity: 0; transform: translateX(620px) scale(.35); transition: transform 1.65s cubic-bezier(.4, 0, .2, 1), opacity .35s ease; will-change: transform; }
-.sv-carousel__item--center { opacity: 1; transform: translateX(0) scale(1); }
-.sv-carousel__item--previous { opacity: 1; transform: translateX(-336px) scaleX(.53) scaleY(.64); }
-.sv-carousel__item--next { opacity: 1; transform: translateX(336px) scaleX(.53) scaleY(.64); }
-.sv-carousel__item--far-previous { transform: translateX(-620px) scale(.35); }
-.sv-carousel__item--far-next { transform: translateX(620px) scale(.35); }
-.sv-carousel__card { position: relative; width: 100%; height: 100%; overflow: hidden; border: 1px solid rgba(150, 224, 255, .35); border-radius: 28px; background: #06121e; box-shadow: 0 38px 90px -32px rgba(4, 20, 43, .6), 0 0 0 7px rgba(255, 255, 255, .5); }
-.sv-carousel__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.sv-carousel__card::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3, 12, 24, .04) 0%, rgba(3, 12, 24, .12) 25%, rgba(3, 12, 24, .68) 48%, rgba(3, 12, 24, .96) 75%, #06121e 100%); content: ''; pointer-events: none; }
-.sv-carousel__content { position: relative; z-index: 1; display: flex; min-height: 520px; flex-direction: column; padding: 24px; color: #fff; opacity: 0; transition: opacity .35s ease; }
-.sv-carousel__item--center .sv-carousel__content { opacity: 1; transition-delay: .55s; }
-.sv-carousel__top { display: flex; align-items: flex-start; justify-content: space-between; color: #d4f7ff; font-size: 12px; font-weight: 800; letter-spacing: .15em; }
-.sv-carousel__icon { display: grid; width: 47px; height: 47px; place-items: center; border: 1px solid rgba(255, 255, 255, .34); border-radius: 14px; background: rgba(8, 31, 49, .45); backdrop-filter: blur(10px); }
-.sv-carousel__icon svg { width: 23px; height: 23px; }
-.sv-carousel__details { margin-top: auto; }
-.hv .sv-carousel__details h2 { margin: 0 0 9px; color: #fff; font-size: clamp(26px, 3vw, 34px); line-height: 1.13; }
-.hv .sv-carousel__details p { margin: 0 0 14px; color: rgba(241, 249, 255, .84); font-size: 14px; line-height: 1.55; }
-.sv-carousel__details ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; margin: 0 0 18px; padding: 15px 0 0; border-top: 1px solid rgba(255, 255, 255, .2); list-style: none; }
-.sv-carousel__details li { display: flex; align-items: flex-start; gap: 7px; color: #e8f7ff; font-size: 12.5px; line-height: 1.4; }
-.sv-carousel__details li svg { width: 14px; height: 14px; flex: none; margin-top: 2px; color: var(--cyan-300); }
-.sv-carousel__cta { display: flex; min-height: 47px; align-items: center; justify-content: space-between; gap: 12px; padding: 0 18px; border-radius: var(--r-pill); color: var(--navy-900); background: #fff; font-size: 13.5px; font-weight: 800; transition: background-color .2s ease, transform .2s ease; }
-.sv-carousel__cta svg { width: 17px; height: 17px; color: var(--cyan-700); }
-.sv-carousel__cta:hover { color: var(--navy-900); background: var(--cyan-200); transform: translateY(-2px); }
-.sv-carousel__side-action { position: absolute; z-index: 2; inset: 0; width: 100%; padding: 0; border: 0; border-radius: 28px; color: #fff; background: transparent; opacity: 0; pointer-events: none; cursor: pointer; transition: opacity .25s ease; }
-.sv-carousel__item--previous .sv-carousel__side-action, .sv-carousel__item--next .sv-carousel__side-action { opacity: 1; pointer-events: auto; }
-.sv-carousel__side-action span { position: absolute; right: 36px; bottom: 32px; left: 36px; font-size: 32px; font-weight: 800; line-height: 1.2; text-align: left; }
-.sv-carousel__controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 20px; }
-.sv-carousel__arrow { display: grid; width: 43px; height: 43px; flex: none; place-items: center; border: 1px solid #a9d6ec; border-radius: 50%; color: var(--navy-900); background: rgba(255, 255, 255, .9); font-size: 21px; cursor: pointer; transition: background-color .2s ease, transform .2s ease; }
-.sv-carousel__arrow:hover { background: var(--cyan-200); transform: translateY(-2px); }
-.sv-carousel__dots { display: flex; align-items: center; gap: 8px; }
-.sv-carousel__dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: #aac7d7; cursor: pointer; transition: width .2s ease, background-color .2s ease; }
-.sv-carousel__dots button.is-active { width: 25px; border-radius: 9px; background: var(--cyan-600); }
-.sv-carousel__count { min-width: 205px; color: var(--navy-700); font-size: 12px; font-weight: 700; }
-.sv-carousel button:focus-visible, .sv-carousel a:focus-visible { outline: 3px solid var(--cyan-400); outline-offset: 3px; }
+/* ---------- Services grid: light blue blush glass cards ---------- */
+.sv-grid-section { padding: 24px 0 90px; }
+.sv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.sv-card { position: relative; display: flex; height: 100%; flex-direction: column; overflow: hidden; padding: 32px; border: 1.5px solid rgba(255, 255, 255, .95); border-radius: 28px; background: radial-gradient(120% 90% at 100% 100%, rgba(190, 222, 255, .85), transparent 60%), linear-gradient(145deg, #EEF0FD 0%, #DDE3FA 55%, #D3E3FC 100%); box-shadow: 0 24px 60px -30px rgba(52, 62, 150, .38), inset 0 1px 0 rgba(255, 255, 255, .9); scroll-margin-top: 110px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.sv-card::before { position: absolute; top: -40%; left: -20%; width: 70%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0)); content: ''; pointer-events: none; }
+.sv-card > * { position: relative; }
+.sv-card:hover { transform: translateY(-5px); border-color: #fff; box-shadow: 0 34px 70px -30px rgba(52, 62, 150, .5), inset 0 1px 0 #fff; }
+.sv-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.sv-tile { display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(255, 255, 255, .9); border-radius: 15px; color: #353A9B; background: linear-gradient(160deg, #D5DBFA, #C4D2F8); box-shadow: 0 8px 18px -10px rgba(52, 62, 150, .55), inset 0 1px 0 rgba(255, 255, 255, .9); transition: transform .25s ease; }
+.sv-tile svg { width: 23px; height: 23px; }
+.sv-card:hover .sv-tile { transform: scale(1.06) rotate(-4deg); }
+.sv-card__num { color: #353A9B; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
+.hv .sv-card h3 { margin-bottom: 8px; color: #11163F; font-size: clamp(21px, 1.9vw, 27px); line-height: 1.2; }
+.hv .sv-card p { max-width: 44ch; margin-bottom: 0; color: #2E3566; font-size: 15.5px; font-weight: 500; }
+.sv-card ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px 18px; margin: 20px 0 26px; padding: 18px 0 0; border-top: 1px solid rgba(53, 58, 155, .22); list-style: none; }
+.sv-card li { display: flex; align-items: flex-start; gap: 9px; color: #1B2152; font-size: 14.5px; font-weight: 600; line-height: 1.45; }
+.sv-card li svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 3px; color: #353A9B; stroke-width: 2.4; }
+.sv-card__cta { display: flex; min-height: 50px; align-items: center; justify-content: space-between; margin-top: auto; padding: 0 22px; border: 1px solid rgba(53, 58, 155, .28); border-radius: var(--r-pill); color: #11163F; background: linear-gradient(180deg, #fff, #EEF2FD); box-shadow: 0 8px 20px -14px rgba(52, 62, 150, .6); font-size: 14.5px; font-weight: 800; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.sv-card__cta svg { width: 18px; height: 18px; color: #353A9B; transition: transform .2s ease; }
+.sv-card__cta:hover { border-color: rgba(53, 58, 155, .55); background: #fff; box-shadow: 0 12px 26px -12px rgba(52, 62, 150, .7); }
+.sv-card__cta:hover svg { transform: translateX(5px); }
 
 /* ---------- Built for you ---------- */
 .sv-band-section { padding-bottom: 40px; scroll-margin-top: 90px; }
@@ -125,39 +103,20 @@
   .sv-band { grid-template-columns: minmax(0, 1fr); }
   .sv-band .hv-btn { justify-self: start; }
 }
-@media (max-width: 900px) {
-  .sv-carousel__item--previous { transform: translateX(-314px) scaleX(.43) scaleY(.55); }
-  .sv-carousel__item--next { transform: translateX(314px) scaleX(.43) scaleY(.55); }
-  .sv-carousel__side-action span { font-size: 40px; }
-}
-@media (max-width: 700px) {
-  .sv-carousel__stage { min-height: 0; }
-  .sv-carousel__slot { display: none; }
-  .sv-carousel__slot--center { position: relative; top: auto; left: auto; display: block; height: auto; margin: 0 auto; transform: none; }
-  .sv-carousel__item--center { height: auto; transform: none; transition: none; }
-  .sv-carousel__card { height: auto; min-height: 520px; }
-  .sv-carousel__side-action { display: none; }
-}
+@media (max-width: 860px) { .sv-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) {
   .sv-hero { padding: 112px 0 56px; }
   .sv-phone-wrap { width: min(340px, 100%); }
   .sv-screen { height: 560px; }
-  .sv-carousel__card, .sv-carousel__content { min-height: 570px; }
-  .sv-carousel__content { padding: 22px; }
-  .sv-carousel__details ul { gap: 7px 10px; }
-  .sv-carousel__controls { gap: 11px; }
-  .sv-carousel__count { min-width: 0; font-size: 11px; }
+  .sv-card { padding: 24px; }
+  .sv-card ul { grid-template-columns: minmax(0, 1fr); }
   .sv-band { padding: 32px 24px; }
-  .sv-grid-section { padding: 46px 0 95px; }
-}
-@media (max-width: 390px) {
-  .sv-carousel__details ul { grid-template-columns: minmax(0, 1fr); }
-  .sv-carousel__count { display: none; }
+  .sv-grid-section { padding-bottom: 68px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sv-phone { animation: none; transition: none; }
   .sv-post { animation: none; }
   .sv-postbtn, .sv-typing b { animation: none; }
-  .sv-carousel__item, .sv-carousel__content, .sv-carousel__side-action, .sv-carousel__arrow, .sv-carousel__dots button, .sv-carousel__cta { transition: none; }
+  .sv-card, .sv-card__cta svg { transition: none; }
 }
-@media (hover: none) { .sv-carousel__arrow:hover, .sv-carousel__cta:hover, .hv-btn:hover { transform: none; } }
+@media (hover: none) { .sv-card:hover, .hv-btn:hover { transform: none; } }
