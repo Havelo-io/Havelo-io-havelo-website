@@ -22,6 +22,7 @@ function serviceFromHash() {
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(serviceFromHash)
+  const [slideDirection, setSlideDirection] = useState<'next' | 'previous'>('next')
   const [isInView, setIsInView] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
@@ -35,7 +36,10 @@ export default function Services() {
   const isAutoPlaying = isInView && !isHovered && !isFocused && isPageVisible && !prefersReducedMotion
 
   useEffect(() => {
-    const updateFromHash = () => setActiveIndex(serviceFromHash())
+    const updateFromHash = () => {
+      setSlideDirection('next')
+      setActiveIndex(serviceFromHash())
+    }
     window.addEventListener('hashchange', updateFromHash)
     return () => window.removeEventListener('hashchange', updateFromHash)
   }, [])
@@ -60,11 +64,17 @@ export default function Services() {
 
   useEffect(() => {
     if (!isAutoPlaying) return
-    const timer = window.setTimeout(() => setActiveIndex(index => (index + 1) % services.length), 5000)
+    const timer = window.setTimeout(() => {
+      setSlideDirection('next')
+      setActiveIndex(index => (index + 1) % services.length)
+    }, 5000)
     return () => window.clearTimeout(timer)
   }, [activeIndex, isAutoPlaying])
 
-  const show = (index: number) => setActiveIndex((index + services.length) % services.length)
+  const show = (index: number) => {
+    setSlideDirection(index < activeIndex ? 'previous' : 'next')
+    setActiveIndex((index + services.length) % services.length)
+  }
 
   return (
     <div className="hv sv">
@@ -102,6 +112,7 @@ export default function Services() {
           </div>
           <div
             className="sv-carousel__stage"
+            data-direction={slideDirection}
             tabIndex={0}
             aria-label="Service cards. Use left and right arrow keys to browse."
             onKeyDown={event => {
@@ -117,7 +128,7 @@ export default function Services() {
               touchStartX.current = null
             }}
           >
-            <button type="button" className="sv-carousel__side sv-carousel__side--previous" onClick={() => show(activeIndex - 1)} aria-label={`Show ${previous.title}`}>
+            <button type="button" key={previous.service} className="sv-carousel__side sv-carousel__side--previous" onClick={() => show(activeIndex - 1)} aria-label={`Show ${previous.title}`}>
               <img src={previous.image} alt="" loading="lazy" />
               <span>{previous.title}</span>
             </button>
@@ -135,7 +146,7 @@ export default function Services() {
               </div>
             </article>
 
-            <button type="button" className="sv-carousel__side sv-carousel__side--next" onClick={() => show(activeIndex + 1)} aria-label={`Show ${next.title}`}>
+            <button type="button" key={next.service} className="sv-carousel__side sv-carousel__side--next" onClick={() => show(activeIndex + 1)} aria-label={`Show ${next.title}`}>
               <img src={next.image} alt="" loading="lazy" />
               <span>{next.title}</span>
             </button>
