@@ -22,16 +22,47 @@ function serviceFromHash() {
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(serviceFromHash)
+  const [isInView, setIsInView] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const [isPageVisible, setIsPageVisible] = useState(!document.hidden)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const carouselRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number | null>(null)
   const active = services[activeIndex]
   const previous = services[(activeIndex - 1 + services.length) % services.length]
   const next = services[(activeIndex + 1) % services.length]
+  const isAutoPlaying = isInView && !isHovered && !isFocused && isPageVisible && !prefersReducedMotion
 
   useEffect(() => {
     const updateFromHash = () => setActiveIndex(serviceFromHash())
     window.addEventListener('hashchange', updateFromHash)
     return () => window.removeEventListener('hashchange', updateFromHash)
   }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setIsInView(entry.isIntersecting), { threshold: 0.35 })
+    if (carouselRef.current) observer.observe(carouselRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updateVisibility = () => setIsPageVisible(!document.hidden)
+    const updateMotionPreference = () => setPrefersReducedMotion(motionPreference.matches)
+    document.addEventListener('visibilitychange', updateVisibility)
+    motionPreference.addEventListener('change', updateMotionPreference)
+    return () => {
+      document.removeEventListener('visibilitychange', updateVisibility)
+      motionPreference.removeEventListener('change', updateMotionPreference)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    const timer = window.setTimeout(() => setActiveIndex(index => (index + 1) % services.length), 5000)
+    return () => window.clearTimeout(timer)
+  }, [activeIndex, isAutoPlaying])
 
   const show = (index: number) => setActiveIndex((index + services.length) % services.length)
 
@@ -53,7 +84,19 @@ export default function Services() {
 
       {/* 4. Services carousel */}
       <section className="sv-grid-section">
-        <div className="hv-wrap sv-carousel" role="region" aria-roledescription="carousel" aria-label="Havelo services">
+        <div
+          className="hv-wrap sv-carousel"
+          ref={carouselRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Havelo services"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onFocusCapture={() => setIsFocused(true)}
+          onBlurCapture={event => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsFocused(false)
+          }}
+        >
           <div className="sv-carousel__anchors" aria-hidden="true">
             {services.map((service, index) => <span id={`svc-${index + 1}`} key={service.service} />)}
           </div>
@@ -105,7 +148,7 @@ export default function Services() {
                 <button type="button" key={service.service} className={index === activeIndex ? 'is-active' : ''} onClick={() => show(index)} aria-label={`Show ${service.title}`} aria-current={index === activeIndex ? 'true' : undefined} />
               ))}
             </div>
-            <span className="sv-carousel__count" aria-live="polite">{active.number} / 06 — {active.title}</span>
+            <span className="sv-carousel__count" aria-live={isAutoPlaying ? 'off' : 'polite'}>{active.number} / 06 — {active.title}</span>
             <button type="button" className="sv-carousel__arrow" onClick={() => show(activeIndex + 1)} aria-label="Next service">→</button>
           </div>
         </div>
