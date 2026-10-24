@@ -67,7 +67,7 @@ export default function Services() {
     const timer = window.setTimeout(() => {
       setSlideDirection('next')
       setActiveIndex(index => (index + 1) % services.length)
-    }, 5000)
+    }, 4000)
     return () => window.clearTimeout(timer)
   }, [activeIndex, isAutoPlaying])
 
