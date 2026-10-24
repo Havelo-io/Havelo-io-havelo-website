@@ -2,7 +2,7 @@
    Havelo Services page (light glass theme). Scoped to .sv.
    Shared tokens and components (hv-*) live in havelo-theme.css.
    ========================================================================== */
-.sv-grid > .reveal { min-width: 0; height: 100%; }
+.hv .sv-grid > .reveal { min-width: 0; height: 100%; }
 
 /* ---------- Hero ---------- */
 .sv-hero { position: relative; padding: 150px 0 72px; }
@@ -64,27 +64,33 @@
 .sv-postbtn { padding: 6px 16px; border-radius: 999px; color: #04303A; background: var(--cyan-400); font-size: 11px; font-weight: 700; animation: sv-pulse 3s ease-in-out infinite; }
 @keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(63, 227, 245, .45); } 70%, 100% { box-shadow: 0 0 0 6px rgba(63, 227, 245, 0); } }
 
-/* ---------- Services grid: light blue blush glass cards ---------- */
-.sv-grid-section { padding: 24px 0 90px; }
-.sv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.sv-card { position: relative; display: flex; height: 100%; flex-direction: column; overflow: hidden; padding: 32px; border: 1.5px solid rgba(255, 255, 255, .95); border-radius: 28px; background: radial-gradient(120% 90% at 100% 100%, rgba(190, 222, 255, .85), transparent 60%), linear-gradient(145deg, #EEF0FD 0%, #DDE3FA 55%, #D3E3FC 100%); box-shadow: 0 24px 60px -30px rgba(52, 62, 150, .38), inset 0 1px 0 rgba(255, 255, 255, .9); scroll-margin-top: 110px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.sv-card::before { position: absolute; top: -40%; left: -20%; width: 70%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0)); content: ''; pointer-events: none; }
-.sv-card > * { position: relative; }
-.sv-card:hover { transform: translateY(-5px); border-color: #fff; box-shadow: 0 34px 70px -30px rgba(52, 62, 150, .5), inset 0 1px 0 #fff; }
-.sv-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-.sv-tile { display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(255, 255, 255, .9); border-radius: 15px; color: #353A9B; background: linear-gradient(160deg, #D5DBFA, #C4D2F8); box-shadow: 0 8px 18px -10px rgba(52, 62, 150, .55), inset 0 1px 0 rgba(255, 255, 255, .9); transition: transform .25s ease; }
-.sv-tile svg { width: 23px; height: 23px; }
-.sv-card:hover .sv-tile { transform: scale(1.06) rotate(-4deg); }
-.sv-card__num { color: #353A9B; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
-.hv .sv-card h3 { margin-bottom: 8px; color: #11163F; font-size: clamp(21px, 1.9vw, 27px); line-height: 1.2; }
-.hv .sv-card p { max-width: 44ch; margin-bottom: 0; color: #2E3566; font-size: 15.5px; font-weight: 500; }
-.sv-card ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px 18px; margin: 20px 0 26px; padding: 18px 0 0; border-top: 1px solid rgba(53, 58, 155, .22); list-style: none; }
-.sv-card li { display: flex; align-items: flex-start; gap: 9px; color: #1B2152; font-size: 14.5px; font-weight: 600; line-height: 1.45; }
-.sv-card li svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 3px; color: #353A9B; stroke-width: 2.4; }
-.sv-card__cta { display: flex; min-height: 50px; align-items: center; justify-content: space-between; margin-top: auto; padding: 0 22px; border: 1px solid rgba(53, 58, 155, .28); border-radius: var(--r-pill); color: #11163F; background: linear-gradient(180deg, #fff, #EEF2FD); box-shadow: 0 8px 20px -14px rgba(52, 62, 150, .6); font-size: 14.5px; font-weight: 800; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.sv-card__cta svg { width: 18px; height: 18px; color: #353A9B; transition: transform .2s ease; }
-.sv-card__cta:hover { border-color: rgba(53, 58, 155, .55); background: #fff; box-shadow: 0 12px 26px -12px rgba(52, 62, 150, .7); }
-.sv-card__cta:hover svg { transform: translateX(5px); }
+/* ---------- Services grid: light blue blush glass cards ----------
+   All selectors are prefixed with ".hv .sv" so they beat any global rule. */
+.hv .sv-grid-section { padding: 24px 0 90px; }
+.hv .sv-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.hv .sv .sv-card, .hv.sv .sv-card {
+  position: relative; display: flex; height: 100%; flex-direction: column; overflow: hidden;
+  padding: 32px; border: 1.5px solid #fff; border-radius: 26px;
+  background: linear-gradient(135deg, #EAEBFB 0%, #DFE3FA 50%, #D2E3FE 100%);
+  box-shadow: 0 22px 50px -28px rgba(60, 70, 160, .35), inset 0 1px 0 rgba(255, 255, 255, .85);
+  scroll-margin-top: 110px; transition: transform .25s ease, box-shadow .25s ease;
+}
+.hv.sv .sv-card::before { content: none; }
+.hv.sv .sv-card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -28px rgba(60, 70, 160, .45), inset 0 1px 0 #fff; }
+.hv.sv .sv-card__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.hv.sv .sv-tile { display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(255, 255, 255, .9); border-radius: 15px; color: #2F3593; background: #CBD5F8; box-shadow: none; transition: transform .25s ease; }
+.hv.sv .sv-tile svg { width: 22px; height: 22px; color: #2F3593; }
+.hv.sv .sv-card:hover .sv-tile { transform: scale(1.06) rotate(-4deg); }
+.hv.sv .sv-card__num { color: #2F3593; font-size: 13px; font-weight: 800; letter-spacing: .16em; }
+.hv.sv .sv-card h3 { margin: 0 0 8px; color: #15183F; font-size: clamp(22px, 2vw, 27px); line-height: 1.2; }
+.hv.sv .sv-card p { max-width: 44ch; margin: 0; color: #2E3566; font-size: 15.5px; font-weight: 500; }
+.hv.sv .sv-card ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin: 18px 0 22px; padding: 16px 0 0; border-top: 1px solid rgba(47, 53, 147, .25); list-style: none; }
+.hv.sv .sv-card li { display: flex; align-items: flex-start; gap: 10px; color: #1B2152; font-size: 15px; font-weight: 600; line-height: 1.4; }
+.hv.sv .sv-card li svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 3px; color: #2F3593; stroke-width: 2.4; }
+.hv.sv .sv-card__cta { display: flex; min-height: 52px; align-items: center; justify-content: space-between; margin-top: auto; padding: 0 24px; border: 1px solid rgba(47, 53, 147, .3); border-radius: 999px; color: #15183F; background: linear-gradient(180deg, #F7F8FE, #EDF1FD); box-shadow: none; font-size: 15px; font-weight: 800; transition: background .2s ease, border-color .2s ease; }
+.hv.sv .sv-card__cta svg { width: 18px; height: 18px; color: #2F3593; transition: transform .2s ease; }
+.hv.sv .sv-card__cta:hover { border-color: rgba(47, 53, 147, .55); background: #fff; }
+.hv.sv .sv-card__cta:hover svg { transform: translateX(5px); }
 
 /* ---------- Built for you ---------- */
 .sv-band-section { padding-bottom: 40px; scroll-margin-top: 90px; }
@@ -103,20 +109,20 @@
   .sv-band { grid-template-columns: minmax(0, 1fr); }
   .sv-band .hv-btn { justify-self: start; }
 }
-@media (max-width: 860px) { .sv-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .hv .sv-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) {
   .sv-hero { padding: 112px 0 56px; }
   .sv-phone-wrap { width: min(340px, 100%); }
   .sv-screen { height: 560px; }
-  .sv-card { padding: 24px; }
-  .sv-card ul { grid-template-columns: minmax(0, 1fr); }
+  .hv.sv .sv-card { padding: 24px; }
+  .hv.sv .sv-card ul { grid-template-columns: minmax(0, 1fr); }
   .sv-band { padding: 32px 24px; }
-  .sv-grid-section { padding-bottom: 68px; }
+  .hv .sv-grid-section { padding-bottom: 68px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sv-phone { animation: none; transition: none; }
   .sv-post { animation: none; }
   .sv-postbtn, .sv-typing b { animation: none; }
-  .sv-card, .sv-card__cta svg { transition: none; }
+  .hv.sv .sv-card, .hv.sv .sv-card__cta svg { transition: none; }
 }
-@media (hover: none) { .sv-card:hover, .hv-btn:hover { transform: none; } }
+@media (hover: none) { .hv.sv .sv-card:hover, .hv-btn:hover { transform: none; } }
