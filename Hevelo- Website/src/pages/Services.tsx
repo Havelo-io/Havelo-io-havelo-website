@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowIcon, CapIcon, CheckIcon, CodeIcon, PenIcon, PhoneIcon, SettingsIcon, SparkIcon } from '../components/Icons'
 import Reveal from '../components/Reveal'
 import SEO from '../components/SEO'
@@ -7,12 +6,12 @@ import ServicesPhone from '../components/ServicesPhone'
 import { SITE } from '../config/site'
 
 const services = [
-  { icon: <CodeIcon />, number: '01', title: 'Website Development', text: 'Fast, accessible websites designed to convert and scale.', items: ['Business websites', 'Portfolio websites', 'Corporate websites', 'E-commerce websites'], service: 'website', cta: 'Discuss Your Website Project', image: '/assets/services/website.webp' },
-  { icon: <PhoneIcon />, number: '02', title: 'Mobile App Development', text: 'Intuitive mobile experiences for customers and teams.', items: ['Android apps', 'iOS apps', 'Cross-platform apps'], service: 'mobile', cta: 'Discuss Your Mobile App', image: '/assets/services/mobile.webp' },
-  { icon: <PenIcon />, number: '03', title: 'UI/UX Design', text: 'Clear interfaces shaped around real user needs.', items: ['Wireframes', 'Prototypes'], service: 'design', cta: 'Discuss Your Design Project', image: '/assets/services/design.webp' },
-  { icon: <SparkIcon />, number: '04', title: 'Custom Software Development', text: 'Purpose-built tools that fit the way your business works.', items: ['Business systems', 'Automation tools'], service: 'software', cta: 'Discuss Your Software Project', image: '/assets/services/software.webp' },
-  { icon: <SettingsIcon />, number: '05', title: 'Maintenance and Support', text: 'Reliable care that keeps your digital products performing.', items: ['Updates', 'Monitoring', 'Technical support'], service: 'support', cta: 'Discuss Your Support Needs', image: '/assets/services/support.webp' },
-  { icon: <CapIcon />, number: '06', title: 'Academic Projects', text: 'Helping students with mini projects, semester projects, final-year projects, research prototypes, web and mobile app development, UI/UX design, and technical guidance.', items: ['Mini and semester projects', 'Final-year projects and research prototypes', 'Web and mobile app development', 'UI/UX design and technical guidance'], service: 'academic', cta: 'Discuss Your Academic Project', image: '/assets/services/academic.webp' },
+  { icon: <CodeIcon />, number: '01', title: 'Website Development', text: 'Fast, accessible websites designed to convert and scale.', items: ['Business websites', 'Portfolio websites', 'Corporate websites', 'E-commerce websites'], service: 'website', image: '/assets/services/website.webp' },
+  { icon: <PhoneIcon />, number: '02', title: 'Mobile App Development', text: 'Intuitive mobile experiences for customers and teams.', items: ['Android apps', 'iOS apps', 'Cross-platform apps'], service: 'mobile', image: '/assets/services/mobile.webp' },
+  { icon: <PenIcon />, number: '03', title: 'UI/UX Design', text: 'Clear interfaces shaped around real user needs.', items: ['Wireframes', 'Prototypes'], service: 'design', image: '/assets/services/design.webp' },
+  { icon: <SparkIcon />, number: '04', title: 'Custom Software Development', text: 'Purpose-built tools that fit the way your business works.', items: ['Business systems', 'Automation tools'], service: 'software', image: '/assets/services/software.webp' },
+  { icon: <SettingsIcon />, number: '05', title: 'Maintenance and Support', text: 'Reliable care that keeps your digital products performing.', items: ['Updates', 'Monitoring', 'Technical support'], service: 'support', image: '/assets/services/support.webp' },
+  { icon: <CapIcon />, number: '06', title: 'Academic Projects', text: 'Helping students with mini projects, semester projects, final-year projects, research prototypes, web and mobile app development, UI/UX design, and technical guidance.', items: ['Mini and semester projects', 'Final-year projects and research prototypes', 'Web and mobile app development', 'UI/UX design and technical guidance'], service: 'academic', image: '/assets/services/academic.webp' },
 ]
 
 function serviceFromHash() {
@@ -135,7 +134,6 @@ export default function Services() {
                           <h2>{service.title}</h2>
                           <p>{service.text}</p>
                           <ul>{service.items.map(item => <li key={item}><CheckIcon />{item}</li>)}</ul>
-                          <Link className="sv-carousel__cta" to={`/start-project?service=${service.service}`} tabIndex={isCenter ? 0 : -1}>{service.cta}<ArrowIcon /></Link>
                         </div>
                       </div>
                     </article>

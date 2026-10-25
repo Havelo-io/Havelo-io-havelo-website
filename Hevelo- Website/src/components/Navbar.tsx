@@ -5,7 +5,7 @@ import { CloseIcon, MenuIcon } from './Icons'
 
 const links = [
   ['Home', '/'],
-  ['About', '/about'],
+  ['About Us', '/about'],
   ['Services', '/services'],
   ['Our Work', '/projects'],
   ['Contact', '/contact'],

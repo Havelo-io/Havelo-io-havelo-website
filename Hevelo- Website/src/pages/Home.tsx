@@ -7,6 +7,7 @@ import SEO from '../components/SEO'
 import ServicesMonitorShowcase from '../components/ServicesMonitorShowcase'
 import HomeVision from '../components/HomeVision'
 import TechnologiesShowcase from '../components/TechnologiesShowcase'
+import WorldToSriLanka from '../components/WorldToSriLanka'
 
 const marqueeServices = [
   'Web Development',
@@ -98,13 +99,13 @@ export default function Home() {
                 <stop offset="1" stopColor="#1189c4" stopOpacity=".08" />
               </linearGradient>
               <filter id="hero-wave-blur" x="-20%" y="-30%" width="140%" height="160%">
-                <feGaussianBlur stdDeviation="26" />
+                <feGaussianBlur stdDeviation="14" />
               </filter>
               <filter id="hero-wave-soften" x="-15%" y="-20%" width="130%" height="140%">
-                <feGaussianBlur stdDeviation="7" />
+                <feGaussianBlur stdDeviation="3" />
               </filter>
               <filter id="hero-wave-glow" x="-20%" y="-40%" width="140%" height="180%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feGaussianBlur stdDeviation="2" result="blur" />
                 <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
               </filter>
               <linearGradient id="hero-wave-side-left" x1="0" y1="0" x2="1" y2="1">
@@ -158,7 +159,7 @@ export default function Home() {
               <path className="hero-wave-trace hero-wave-trace--deep hero-wave-trace--faint" d="M-162 742 C 152 650 394 786 704 760 C 1018 734 1276 632 1762 696" />
               <use className="hero-code-guide" href="#hero-code-path-back" />
               <g className="hero-code-streams" mask="url(#hero-code-ribbon-mask)">
-                <text className="hero-code-flow"><textPath href="#hero-code-path-back" startOffset="-24%">{'React   •   Next.js'}<animate attributeName="startOffset" from="-28%" to="108%" dur="31s" begin="-13s" repeatCount="indefinite" /></textPath></text>
+                <text className="hero-code-flow"><textPath href="#hero-code-path-back" startOffset="12%">{'React   •   Next.js'}</textPath></text>
               </g>
             </g>
 
@@ -170,7 +171,7 @@ export default function Home() {
               <path className="hero-wave-trace hero-wave-trace--teal hero-wave-trace--faint" d="M-144 802 C 172 716 416 850 752 818 C 1072 788 1332 690 1756 738" />
               <use className="hero-code-guide" href="#hero-code-path-middle" />
               <g className="hero-code-streams" mask="url(#hero-code-ribbon-mask)">
-                <text className="hero-code-flow"><textPath href="#hero-code-path-middle" startOffset="-18%">{'TypeScript   •   async/await'}<animate attributeName="startOffset" from="-32%" to="106%" dur="34s" begin="-21s" repeatCount="indefinite" /></textPath></text>
+                <text className="hero-code-flow"><textPath href="#hero-code-path-middle" startOffset="42%">{'TypeScript   •   async/await'}</textPath></text>
               </g>
             </g>
 
@@ -181,7 +182,7 @@ export default function Home() {
               <path className="hero-wave-trace hero-wave-trace--deep" d="M-130 842 C 214 752 456 854 768 860 C 1104 866 1354 778 1742 792" />
               <use className="hero-code-guide" href="#hero-code-path-front" />
               <g className="hero-code-streams" mask="url(#hero-code-ribbon-mask)">
-                <text className="hero-code-flow"><textPath href="#hero-code-path-front" startOffset="-14%">{'Node.js   •   <Component />'}<animate attributeName="startOffset" from="-30%" to="106%" dur="36s" begin="-7s" repeatCount="indefinite" /></textPath></text>
+                <text className="hero-code-flow"><textPath href="#hero-code-path-front" startOffset="70%">{'Node.js   •   <Component />'}</textPath></text>
               </g>
             </g>
           </svg>
@@ -223,13 +224,18 @@ export default function Home() {
 
       <TechnologiesShowcase />
 
+      <WorldToSriLanka />
+
       <section className="section home-final-cta">
         <div className="container">
           <Reveal>
             <div className="cta-panel">
-              <div className="cta-glow" />
-              <div><span className="eyebrow"><span />Your next idea</span><h2>Let's Build Something Amazing Together</h2></div>
-              <Link className="button button--light" to="/contact">Contact Us<ArrowIcon /></Link>
+              <div className="home-final-cta__copy">
+                <span className="eyebrow"><span />Built for you</span>
+                <h2>Have something different in <em>mind?</em></h2>
+                <p>Tell us what you want to create. We will help shape the right approach.</p>
+              </div>
+              <Link className="button button--light" to="/contact">Discuss your idea<ArrowIcon /></Link>
             </div>
           </Reveal>
         </div>
