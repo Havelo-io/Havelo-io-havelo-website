@@ -7,7 +7,9 @@ import SEO from '../components/SEO'
 import ServicesMonitorShowcase from '../components/ServicesMonitorShowcase'
 import HomeVision from '../components/HomeVision'
 import TechnologiesShowcase from '../components/TechnologiesShowcase'
+import WhoWeAreVideo from '../components/WhoWeAreVideo'
 import WorldToSriLanka from '../components/WorldToSriLanka'
+import RobotClosingCTA from '../components/RobotClosingCTA'
 
 const marqueeServices = [
   'Web Development',
@@ -197,7 +199,7 @@ export default function Home() {
             </h1>
             <HeroDescription />
             <div className="hero-actions">
-              <Link className="button" to="/start-project">Start a Project<ArrowIcon /></Link>
+              <Link className="button" to="/contact">Start a Project<ArrowIcon /></Link>
               <Link className="button button--secondary" to="/services">Explore Services</Link>
             </div>
           </Reveal>
@@ -224,22 +226,11 @@ export default function Home() {
 
       <TechnologiesShowcase />
 
+      <WhoWeAreVideo />
+
       <WorldToSriLanka />
 
-      <section className="section home-final-cta">
-        <div className="container">
-          <Reveal>
-            <div className="cta-panel">
-              <div className="home-final-cta__copy">
-                <span className="eyebrow"><span />Built for you</span>
-                <h2>Have something different in <em>mind?</em></h2>
-                <p>Tell us what you want to create. We will help shape the right approach.</p>
-              </div>
-              <Link className="button button--light" to="/contact">Discuss your idea<ArrowIcon /></Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <RobotClosingCTA />
     </>
   )
 }

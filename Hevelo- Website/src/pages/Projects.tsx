@@ -84,7 +84,7 @@ export default function Projects() {
               <h2>Have a project in <span className="hv-grad">mind?</span></h2>
               <p>Send a short brief. You will get an honest reply within two working days.</p>
               <div className="pj-cta__actions">
-                <Link className="hv-btn hv-btn--primary" to="/start-project">Start a project<ArrowIcon /></Link>
+                <Link className="hv-btn hv-btn--primary" to="/contact">Start a project<ArrowIcon /></Link>
                 <a className="hv-btn hv-btn--ghost" href={SITE.phoneHref} aria-label={callLabel(SITE.phone)}><CallIcon />Call us</a>
               </div>
             </div>

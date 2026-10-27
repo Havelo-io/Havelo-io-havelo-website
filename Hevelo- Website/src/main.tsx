@@ -8,6 +8,9 @@ import './havelo-services.css'
 import './havelo-theme.css'
 import './havelo-pages.css'
 import './havelo-home.css'
+import './havelo-who-we-are.css'
+import './havelo-robot-cta.css'
+import './havelo-services-showcase.css'
 
 document.documentElement.dataset.theme = 'dark'
 

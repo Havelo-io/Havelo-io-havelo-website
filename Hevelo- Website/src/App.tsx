@@ -5,6 +5,7 @@ import PageTransition from './components/PageTransition'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
+import HaveloRobotAssistant from './components/HaveloRobotAssistant'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -68,6 +69,7 @@ export default function App() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <HaveloRobotAssistant />
     </div>
   )
 }
