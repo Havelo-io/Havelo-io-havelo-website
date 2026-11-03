@@ -99,7 +99,7 @@ export default function About() {
             <span className="hv-eyebrow">Our story</span>
             <h2>Small team.<br />Senior <span className="hv-grad">thinking.</span></h2>
             <div className="ab-photo">
-              <img src="/office-colombo.jpg" alt="The Havelo team working together in the Colombo studio" width="1080" height="496" loading="lazy" />
+              <img src="/assets/havelo-it-office-workstations.jpg" alt="Concept image of four developers at work in a Havelo-branded office" width="1862" height="845" loading="lazy" />
             </div>
           </Reveal>
           <Reveal delay={100}>
