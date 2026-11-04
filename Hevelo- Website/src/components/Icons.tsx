@@ -32,3 +32,5 @@ export const CapIcon = (props: IconProps) => <svg {...base} {...props}><path d="
 export const LinkedInIcon = (props: IconProps) => <svg {...base} {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
 export const CallIcon = (props: IconProps) => <svg {...base} {...props}><path d="M6.6 3h3l1.6 4-2 1.4a12 12 0 0 0 5.4 5.4L16 11.8l4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z" /></svg>
 export const PinIcon = (props: IconProps) => <svg {...base} {...props}><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
+export const CartIcon = (props: IconProps) => <svg {...base} {...props}><circle cx="9" cy="20" r="1" /><circle cx="18" cy="20" r="1" /><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.3 8H6" /></svg>
+export const PosIcon = (props: IconProps) => <svg {...base} {...props}><rect x="4" y="3" width="16" height="14" rx="2" /><path d="M8 7h8M8 11h2M14 11h2M7 21h10M9 17v4M15 17v4" /></svg>

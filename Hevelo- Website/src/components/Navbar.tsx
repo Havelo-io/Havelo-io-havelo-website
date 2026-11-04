@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { CloseIcon, MenuIcon } from './Icons'
 
 const links = [
@@ -18,7 +18,67 @@ const PhoneIcon = () => (
 )
 
 export default function Navbar() {
+  const location = useLocation()
   const [open, setOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [focusedWithin, setFocusedWithin] = useState(false)
+  const lastScrollY = useRef(0)
+  const scrollDistance = useRef(0)
+  const frame = useRef(0)
+
+  // Hide on meaningful downward travel and reveal on meaningful upward travel.
+  // The animation itself is CSS-only; React updates only when visibility changes.
+  useEffect(() => {
+    lastScrollY.current = Math.max(0, window.scrollY)
+    scrollDistance.current = 0
+
+    // A new history entry can arrive while the previous page was scrolled and
+    // the navbar was hidden. Reveal it and establish a fresh scroll baseline.
+    frame.current = window.requestAnimationFrame(() => {
+      frame.current = 0
+      lastScrollY.current = Math.max(0, window.scrollY)
+      scrollDistance.current = 0
+      setHidden(false)
+    })
+
+    const update = () => {
+      frame.current = 0
+      const currentY = Math.max(0, window.scrollY)
+      const movement = currentY - lastScrollY.current
+
+      if (currentY <= 80 || open) {
+        scrollDistance.current = 0
+        setHidden(false)
+        lastScrollY.current = currentY
+        return
+      }
+
+      if (movement === 0) return
+      if ((movement > 0 && scrollDistance.current < 0) || (movement < 0 && scrollDistance.current > 0)) {
+        scrollDistance.current = 0
+      }
+      scrollDistance.current += movement
+
+      if (currentY > 80 && scrollDistance.current >= 6) {
+        setHidden(true)
+        scrollDistance.current = 0
+      } else if (scrollDistance.current <= -6) {
+        setHidden(false)
+        scrollDistance.current = 0
+      }
+      lastScrollY.current = currentY
+    }
+
+    const onScroll = () => {
+      if (!frame.current) frame.current = window.requestAnimationFrame(update)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.cancelAnimationFrame(frame.current)
+    }
+  }, [location.key, open, focusedWithin])
 
   // Close the mobile menu with Escape, and when the screen becomes wide.
   useEffect(() => {
@@ -37,7 +97,19 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header className="navbar-wrap">
+    <header
+      className={`navbar-wrap${hidden && !open ? ' is-hidden' : ''}`}
+      onFocusCapture={event => {
+        // Mouse-clicked links retain DOM focus after client-side navigation.
+        // Only keyboard-visible focus should pin the navbar open.
+        setFocusedWithin((event.target as HTMLElement).matches(':focus-visible'))
+        setHidden(false)
+      }}
+      onBlurCapture={event => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocusedWithin(false)
+      }}
+      onPointerDownCapture={() => setFocusedWithin(false)}
+    >
       <nav className="navbar container" aria-label="Main navigation">
         <Link to="/" className="brand" aria-label="HAVELO home">
           <span className="brand-mark"><img src="/assets/havelo-mark.png" alt="" width="256" height="256" /></span>
@@ -73,7 +145,7 @@ export default function Navbar() {
           </Link>
           <button
             className={`icon-button menu-button ${open ? 'is-open' : ''}`}
-            onClick={() => setOpen(!open)}
+            onClick={() => { setHidden(false); setOpen(value => !value) }}
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? 'Close menu' : 'Open menu'}
