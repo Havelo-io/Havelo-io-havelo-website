@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 type RequestLike = {
   method?: string
   body?: unknown
