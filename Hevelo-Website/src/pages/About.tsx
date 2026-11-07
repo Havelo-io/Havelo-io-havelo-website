@@ -71,7 +71,6 @@ export default function About() {
             <p className="ab-lead">A software studio in Colombo. We design and build websites, mobile apps and custom software for founders and teams.</p>
             <div className="ab-actions">
               <a className="hv-btn hv-btn--primary" href="#contact">Start a project <ArrowIcon /></a>
-              <Link className="hv-btn hv-btn--secondary" to="/projects">See our work</Link>
             </div>
           </Reveal>
           <Reveal delay={120}><HeroModule /></Reveal>

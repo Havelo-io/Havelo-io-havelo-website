@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { SITE, callLabel } from '../config/site'
 import worldMap from '../assets/world-map.svg' // <-- your map file name
 
-const INSTAGRAM_URL = 'https://www.instagram.com/' // <-- put your Havelo Instagram link here
+const INSTAGRAM_URL = 'https://www.instagram.com/havelo.lk/' // <-- put your Havelo Instagram link here
 
 const Svg = ({ children }: { children: ReactNode }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -79,7 +79,6 @@ export default function Footer() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About us</Link></li>
             <li><Link to="/services">Services</Link></li>
-            <li><Link to="/projects">Our Work</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </nav>
