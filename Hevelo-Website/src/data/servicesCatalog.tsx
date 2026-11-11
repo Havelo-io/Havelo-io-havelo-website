@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { CapIcon, CartIcon, CodeIcon, PenIcon, PhoneIcon, PosIcon, SettingsIcon, ShieldIcon, SparkIcon, TargetIcon } from '../components/Icons'
+import { CapIcon, CartIcon, CodeIcon, PenIcon, PhoneIcon, PosIcon, SettingsIcon, SparkIcon, TargetIcon } from '../components/Icons'
 
 export type ServiceItem = {
   id: string
@@ -58,11 +58,11 @@ export const servicesCatalog: readonly ServiceItem[] = [
     image: '/assets/services/generated/pos-system.webp', imageAlt: 'Modern touchscreen POS terminal with receipt printer and card reader', icon: <PosIcon />,
   },
   {
-    id: 'svc-9', number: '07', slug: 'cybersecurity', title: 'Cybersecurity Solutions',
-    description: 'Practical security solutions that help protect your systems, business, and data.',
-    highlights: ['Security assessments', 'Access and data protection', 'Monitoring and risk reduction'],
-    detail: 'We apply pragmatic controls around identities, application access, infrastructure, and monitoring to reduce avoidable security risk.',
-    image: '/assets/services/generated/cybersecurity.webp', imageAlt: 'Professional cybersecurity operations and threat monitoring workspace', icon: <ShieldIcon />,
+    id: 'svc-6', number: '07', slug: 'academic', title: 'Academic Projects',
+    description: 'Structured technical guidance for student projects and research prototypes.',
+    highlights: ['Mini and final-year projects', 'Research and working prototypes', 'Web, mobile, and UI/UX guidance'],
+    detail: 'We help students turn requirements into a clear plan, a working implementation, and an understandable technical outcome.',
+    image: '/assets/services/academic.webp', imageAlt: 'Students collaborating on a software project in a modern workspace', icon: <CapIcon />,
   },
   {
     id: 'svc-10', number: '08', slug: 'ecommerce', title: 'E-commerce Solutions',
@@ -77,12 +77,5 @@ export const servicesCatalog: readonly ServiceItem[] = [
     highlights: ['Updates and improvements', 'Monitoring and issue response', 'Ongoing technical support'],
     detail: 'After launch, we help protect performance, resolve issues, deliver improvements, and keep the product aligned with changing needs.',
     image: '/assets/services/support.webp', imageAlt: 'Technical specialist monitoring reliable digital systems', icon: <SettingsIcon />,
-  },
-  {
-    id: 'svc-6', number: '10', slug: 'academic', title: 'Academic Projects',
-    description: 'Structured technical guidance for student projects and research prototypes.',
-    highlights: ['Mini and final-year projects', 'Research and working prototypes', 'Web, mobile, and UI/UX guidance'],
-    detail: 'We help students turn requirements into a clear plan, a working implementation, and an understandable technical outcome.',
-    image: '/assets/services/academic.webp', imageAlt: 'Students collaborating on a software project in a modern workspace', icon: <CapIcon />,
   },
 ]
